@@ -1,15 +1,31 @@
 <!doctype html>
 <html>
+<!-- 
+                     __                      __                           
+                    |  \                    |  \                          
+  ______   _______   \$$  _______  __    __ | $$____    ______    ______  
+ |      \ |       \ |  \ /       \|  \  |  \| $$    \  /      \  /      \ 
+  \$$$$$$\| $$$$$$$\| $$|  $$$$$$$| $$  | $$| $$$$$$$\|  $$$$$$\|  $$$$$$\
+ /      $S| $$  | $$| $$| $$      | $$  | $$| $$  | V$| $$    $$| $$   \ME
+|  $$$$$$A| $$  | $$| $$| $$_____ | $$__/ $$| $$__/ E$| $$$$$$$$| $$      
+ \$$    $$| $$  | $$| $$ \$$     \ \$$    $$| $$    $$ \$$     \| $$      
+  \$$$$$$$ \$$   \$$ \$$  \$$$$$$$ _\$$$$$$$ \$$$$$$$   \$$$$$$$ \$$      
+                                  |  \__| $$                              
+                                   \$$    $$                              
+                                    \$$$$$$                                                                                                           '                            '                      `*´¯                                          -->
+    
+     -->
     <head>
         <style>
             body {
                 background: black;
+                height: 100%;
             }
             .typewriter {
                 color: white;
                 font-family: monospace;
                 overflow: hidden; 
-                border-right: .15em solid #0f0; 
+                border-right: .15em solid #ff6ad5; 
                 white-space: nowrap; 
                 margin: 0 auto; 
                 letter-spacing: .15em; 
@@ -17,7 +33,11 @@
                     typing 3.5s steps(30, end),
                     blink-caret .5s step-end infinite;
             }
-
+            #time, #seed {
+                position: fixed;
+                bottom: 0;
+                color: white;
+            }
             @keyframes typing {
                 from { width: 0 }
                 to { width: 100% }
@@ -25,7 +45,7 @@
 
             @keyframes blink-caret {
                 from, to { border-color: transparent }
-                50% { border-color: #0f0; }
+                50% { border-color: #ff6ad5; }
             }
         </style>
     </head>
@@ -33,5 +53,41 @@
         <h1 class="typewriter">
             You are now plugged in to the Net.
         </h1>
+        <p id="time"></p>
+        <p id="seed"></p>
+        <script>
+            function updateTime(){
+                var theNow = new Date();
+                document.getElementById("time").innerText = theNow;
+            }
+            var clock = setInterval(updateTime, 1000);
+            
+            updateTime();
+
+            function addNumbers(numbers) {
+                var total = 0;
+                var numbers = numbers.toString();
+                for(var i=0;i<numbers.length;i++){
+                    total = total + parseInt(numbers[i]);
+                }
+                return total;
+            }
+
+            function getDigitalRoot(numbers) {
+                var numbers  = numbers.toString();
+                var root = numbers.length;
+
+                while(numbers.length>1) {
+                    numbers = addNumbers(numbers).toString();
+                }
+                return root;
+            }
+
+
+            var theSeed = new Date();
+            theSeed = theSeed.getSeconds();
+            document.getElementById("time").innerText = "Seed: " + getDigitalRoot(theSeed);
+        </script>
+
     </body>
 </html>
