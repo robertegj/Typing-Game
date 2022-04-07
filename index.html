@@ -2,13 +2,30 @@
 <html>
     <head>
         <title>Rob's typing game</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <style>
+            body {
+                text-align: center;
+            }
+            #typingForm {
+                border: 2px solid white;
+            }
+            .wrong {
+                animation: angry-wiggle 0.2s 3;
+            }
+            @keyframes angry-wiggle{
+                0%   {border: 2px solid white;background: white;}
+                50%  {border: 2px solid red;  background: red;margin-right: 10px;}
+                100% {border: 2px solid white;background: white;}
+        }
+        </style>
     </head>
     <body>
-        <h1>Rob's typing game</h1>
-        <p>Current word:</p>
-        <p id="currentWord"></p>
+        <p>Rob's typing game</p>
+        <h2>Current word:</h2>
+        <h1 id="currentWord"></h1>
         <form id="typingForm">
-            <input id="typedWord" type="text" autofocus/>
+            <input id="typedWord" type="text"  autofocus/>
             <input type="submit" />
         </form>
         <script>
@@ -31,6 +48,8 @@
 
             function handleForm(event) { 
                 event.preventDefault(); 
+                document.getElementById("typingForm").classList.remove("wrong");
+
                 var userInput = document.getElementById("typedWord").value;
                 var currentWord = document.getElementById("currentWord").innerText;
 
@@ -38,19 +57,10 @@
                     document.getElementById("typedWord").value = "";
                     rollWord();
                 } else {
-                    alert("WRONG");
+                    document.getElementById("typingForm").classList.add("wrong");
                 }
             } 
             document.getElementById("typingForm").addEventListener('submit', handleForm);
-
-            // 2 functions:
-            // check word
-            // update word
-            // explained:
-            // if check word passes
-            // update word!
-            
-
 
         </script>
     </body>
