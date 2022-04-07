@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Rob's typing game</title>
+    </head>
+    <body>
+        <h1>Rob's typing game</h1>
+        <p>Current word:</p>
+        <p id="currentWord"></p>
+        <form id="typingForm">
+            <input id="typedWord" type="text" autofocus/>
+            <input type="submit" />
+        </form>
+        <script>
+            wordList = [
+                "test",
+                "programming",
+                "function",
+                "software",
+                "Array"
+            ]
+
+            function rollWord() {
+                document.getElementById("currentWord").innerText = wordList[Math.floor(Math.random()*wordList.length)];
+            }
+            rollWord();
+
+            function handleForm(event) { 
+                event.preventDefault(); 
+                var userInput = document.getElementById("typedWord").value;
+                var currentWord = document.getElementById("currentWord").innerText;
+
+                console.log(userInput);
+                if(userInput == currentWord){
+                    document.getElementById("typedWord").value = "";
+                    rollWord();
+                } else {
+                    alert("WRONG");
+                }
+            } 
+            document.getElementById("typingForm").addEventListener('submit', handleForm);
+
+            // 2 functions:
+            // check word
+            // update word
+            // explained:
+            // if check word passes
+            // update word!
+            
+
+
+        </script>
+    </body>
+
+</html>
