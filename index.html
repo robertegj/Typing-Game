@@ -1,6 +1,6 @@
 <!doctype html>
 <html>
-<!-- 
+    <!-- 
                      __                      __                           
                     |  \                    |  \                          
   ______   _______   \$$  _______  __    __ | $$____    ______    ______  
@@ -21,12 +21,13 @@
 (@)| _\___   /
    \___\   \_\
   
-
--->
+    -->
     <head>
+        <title>ANICYBER</title>
         <style>
             body {
                 background: black;
+                color: white;
                 height: 100%;
             }
             .typewriter {
@@ -46,6 +47,10 @@
                 bottom: 0;
                 color: white;
             }
+            #mind {
+                color: rgba(255,255,255,0.2);
+                user-select: none;
+            }
             @keyframes typing {
                 from { width: 0 }
                 to { width: 100% }
@@ -59,14 +64,15 @@
     </head>
     <body>
         <h1 class="typewriter">
-            You are now plugged in to the Net.
+            YOU ARE NOW CONNECTED TO THE .NET
         </h1>
+        <p id="mind"></p>
         <p id="time"></p>
         <p id="seed"></p>
         <script>
             function updateTime(){
                 var theNow = new Date();
-                document.getElementById("time").innerText = theNow;
+                document.getElementById("time").innerText = theNow.toString().toUpperCase();
             }
             var clock = setInterval(updateTime, 1000);
             
@@ -95,6 +101,41 @@
             var theSeed = new Date();
             theSeed = theSeed.getSeconds();
             document.getElementById("time").innerText = "Seed: " + getDigitalRoot(theSeed);
+
+            var info={
+                timeOpened:new Date(),
+                timezone:(new Date()).getTimezoneOffset()/60,
+
+                pageon: (window.location.pathname),
+                referrer: (document.referrer),
+                previousSites: (history.length),
+
+                browserName: (navigator.appName),
+                browserEngine: (navigator.product),
+                browserVersion1a: (navigator.appVersion),
+                browserVersion1b: (navigator.userAgent),
+                browserLanguage: (navigator.language),
+                browserOnline: (navigator.onLine),
+                browserPlatform: (navigator.platform),
+                javaEnabled: (navigator.javaEnabled()),
+                dataCookiesEnabled: (navigator.cookieEnabled),
+                dataCookies1: (document.cookie),
+                dataCookies2: (decodeURIComponent(document.cookie.split(";"))),
+                dataStorage: (localStorage),
+
+                sizeScreenW: (screen.width),
+                sizeScreenH: (screen.height),
+                sizeDocW: (document.width),
+                sizeDocH: (document.height),
+                sizeInW: (innerWidth),
+                sizeInH: (innerHeight),
+                sizeAvailW: (screen.availWidth),
+                sizeAvailH: (screen.availHeight),
+                scrColorDepth: (screen.colorDepth),
+                scrPixelDepth: (screen.pixelDepth),
+            }
+            console.log(info);
+            document.getElementById("mind").innerText = JSON.stringify(info);
         </script>
 
     </body>
