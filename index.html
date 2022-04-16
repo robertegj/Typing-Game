@@ -63,19 +63,18 @@ Images (Insta)
                 color: rgba(255,255,255,0.2);
                 user-select: none;
             }
-            .link-list {
-                font-size: 4em;
-            }
             .btn {
-                border: solid 1px white;
+                border: solid .1em white;
                 text-align: center;
                 cursor: pointer;
                 user-select: none;
+                font-size: 4em;
+                margin: .3em;
             }
             .btn:hover {
                 background: white;
                 color: black;
-                border: solid 1px black;
+                border: solid .1em black;
             }
             a .btn {
                 color: red;
@@ -94,7 +93,8 @@ Images (Insta)
         <h1 class="typewriter">
             YOU ARE NOW CONNECTED TO THE .NET
         </h1>
-        <div class="link-list">
+        <div class="link btn" onclick="document.getElementsByClassName('link-list')[0].style.display='inline';this.style.display='none';">Begin Session</div>
+        <div class="link-list" style="display:none;">
             <a href="https://www.fiverr.com/anicybergroup"><div class="link btn">Shop</div></a>
             <a href="https://discord.gg/9CXN6Um"><div class="link btn">Chat</div></a>
             <a href="https://www.instagram.com/_anicyber/"><div class="link btn">Images</div></a>
