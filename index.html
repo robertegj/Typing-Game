@@ -70,6 +70,7 @@ Images (Insta)
                 user-select: none;
                 font-size: 4em;
                 margin: .3em;
+                text-transform: uppercase;
             }
             .btn:hover {
                 background: white;
@@ -78,6 +79,10 @@ Images (Insta)
             }
             a .btn {
                 color: red;
+            }
+            .fill {
+                height: 95vh;
+                line-height: 95vh;
             }
             @keyframes typing {
                 from { width: 0 }
@@ -90,18 +95,21 @@ Images (Insta)
         </style>
     </head>
     <body>
-        <h1 class="typewriter">
-            YOU ARE NOW CONNECTED TO THE .NET
-        </h1>
-        <div class="link btn" onclick="document.getElementsByClassName('link-list')[0].style.display='inline';this.style.display='none';">Begin Session</div>
-        <div class="link-list" style="display:none;">
-            <a href="https://www.fiverr.com/anicybergroup"><div class="link btn">Shop</div></a>
-            <a href="https://discord.gg/9CXN6Um"><div class="link btn">Chat</div></a>
-            <a href="https://www.instagram.com/_anicyber/"><div class="link btn">Images</div></a>
+        <div class="btn fill" onclick="document.getElementById('page').style.display='inline';this.style.display='none';">Begin Session</div>
+        <div id="page"  style="display:none;">
+            <h1 class="typewriter">
+                YOU ARE NOW CONNECTED TO THE .NET
+            </h1>
+            <div class="link-list">
+                <a href="https://www.fiverr.com/anicybergroup"><div class="btn">Shop</div></a>
+                <a href="https://discord.gg/9CXN6Um"><div class="btn">Chat</div></a>
+                <a href="https://www.instagram.com/_anicyber/"><div class="btn">Images</div></a>
+                <a onclick=""><div class="btn">Apps...</div></a>
+            </div>
+            <p id="mind"></p>
+            <p id="time"></p>
+            <p id="seed"></p>
         </div>
-        <p id="mind"></p>
-        <p id="time"></p>
-        <p id="seed"></p>
         <script>
             // Begin JavaScript
             function updateTime(){
@@ -168,7 +176,6 @@ Images (Insta)
                 scrColorDepth: (screen.colorDepth),
                 scrPixelDepth: (screen.pixelDepth),
             }
-            console.log(info);
             document.getElementById("mind").innerText = JSON.stringify(info);
         </script>
 
