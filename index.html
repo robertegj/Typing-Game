@@ -20,11 +20,23 @@
    /      q__p
 (@)| _\___   /
    \___\   \_\
-  
+ 
+#10d7ae
+#ff6ad5
+#fe7771
+
+Web Design (Shop?)
+Discord (Chat)
+Images (Insta)
+
     -->
     <head>
         <title>ANICYBER</title>
+        <meta name="viewport" content="initial-scale=1, width=device-width" />
         <style>
+            /*
+                Begin CSS
+            */
             body {
                 background: black;
                 color: white;
@@ -51,11 +63,27 @@
                 color: rgba(255,255,255,0.2);
                 user-select: none;
             }
+            .link-list {
+                font-size: 4em;
+            }
+            .btn {
+                border: solid 1px white;
+                text-align: center;
+                cursor: pointer;
+                user-select: none;
+            }
+            .btn:hover {
+                background: white;
+                color: black;
+                border: solid 1px black;
+            }
+            a .btn {
+                color: red;
+            }
             @keyframes typing {
                 from { width: 0 }
                 to { width: 100% }
             }
-
             @keyframes blink-caret {
                 from, to { border-color: transparent }
                 50% { border-color: #ff6ad5; }
@@ -66,10 +94,16 @@
         <h1 class="typewriter">
             YOU ARE NOW CONNECTED TO THE .NET
         </h1>
+        <div class="link-list">
+            <a href="https://www.fiverr.com/anicybergroup"><div class="link btn">Shop</div></a>
+            <a href="https://discord.gg/9CXN6Um"><div class="link btn">Chat</div></a>
+            <a href="https://www.instagram.com/_anicyber/"><div class="link btn">Images</div></a>
+        </div>
         <p id="mind"></p>
         <p id="time"></p>
         <p id="seed"></p>
         <script>
+            // Begin JavaScript
             function updateTime(){
                 var theNow = new Date();
                 document.getElementById("time").innerText = theNow.toString().toUpperCase();
