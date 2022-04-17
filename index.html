@@ -113,7 +113,7 @@ Images (Insta)
                 <a onclick="document.getElementById('apps').style.display='inline';this.style.display='none';"><div class="btn">Apps...</div></a>
                 <div id="apps" style="display:none;">
                     <a onclick=""><div class="btn">Notes</div></a>
-                    <a onclick=""><div class="btn">Flash Cards</div></a>
+                    <a href="https://robertegj.github.io/Flash-Cards/"><div class="btn">Flash Cards</div></a>
                     <a onclick="startDraw();"><div class="btn">Draw</div></a>
                 </div>
             </div>
@@ -160,7 +160,7 @@ Images (Insta)
                 let y = event.clientY - rect.top;
                 
                 ctx.fillStyle = 'green';
-                ctx.fillRect(event.clientX, event.clientY, 10, 10);
+                ctx.fillRect(x, y, 10, 10);
 
                 console.log("Coordinate x: " + x, 
                         "Coordinate y: " + y);
