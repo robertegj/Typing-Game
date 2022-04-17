@@ -72,7 +72,6 @@ Images (Insta)
                 user-select: none;
                 font-size: 4em;
                 margin: .3em;
-                text-transform: uppercase;
             }
             .btn:hover {
                 background: white;
@@ -85,6 +84,11 @@ Images (Insta)
             .fill {
                 height: 60vh;
                 padding-top: 30vh;
+            }
+            #canvas {
+                border: solid .1em white;
+                width: -webkit-fill-available;
+                height: 90vh;
             }
             @keyframes typing {
                 from { width: 0 }
@@ -110,6 +114,7 @@ Images (Insta)
                 <div id="apps" style="display:none;">
                     <a onclick=""><div class="btn">Notes</div></a>
                     <a onclick=""><div class="btn">Flash Cards</div></a>
+                    <a onclick="startDraw();"><div class="btn">Draw</div></a>
                 </div>
             </div>
             <p id="mind"></p>
@@ -147,6 +152,32 @@ Images (Insta)
             var theSeed = new Date();
             theSeed = theSeed.getSeconds();
             document.getElementById("time").innerText = "Seed: " + getDigitalRoot(theSeed);
+
+            function clickCanvas(canvas, event){
+                var ctx = canvas.getContext('2d');
+                let rect = canvas.getBoundingClientRect();
+                let x = event.clientX - rect.left;
+                let y = event.clientY - rect.top;
+                
+                ctx.fillStyle = 'green';
+                ctx.fillRect(event.clientX, event.clientY, 10, 10);
+
+                console.log("Coordinate x: " + x, 
+                        "Coordinate y: " + y);
+                
+            }
+
+            function startDraw(){
+                clearInterval(clock);
+                document.getElementById("page").innerHTML = "";
+                var canvasElem = document.createElement('canvas');
+                canvasElem.id = "canvas";
+                canvasElem.addEventListener("mousedown", function(e){
+                    clickCanvas(canvasElem, e);
+                    }
+                );
+                document.getElementById("page").appendChild(canvasElem);
+            }
 
             var info={
                 timeOpened:new Date(),
