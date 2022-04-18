@@ -29,6 +29,17 @@ Web Design (Shop?)
 Discord (Chat)
 Images (Insta)
 
+Features to add:
+- Code pen
+- News
+- Multiple Notes
+- Notes -> Code, Code -> Notes
+- REMEMBER PAGE/VIEW
+
+Better navigation...
+- Back button
+- Better "page" clearing, element handling
+
     -->
     <head>
         <title>ANICYBER</title>
@@ -85,10 +96,18 @@ Images (Insta)
                 height: 60vh;
                 padding-top: 30vh;
             }
+            #notepad {
+                width: 60%;
+                height: 60vh;
+            }
             #canvas {
                 border: solid .1em white;
                 width: -webkit-fill-available;
                 height: 90vh;
+            }
+            #codeBox {
+                text-align: center;
+                width: 100%;
             }
             @keyframes typing {
                 from { width: 0 }
@@ -102,7 +121,7 @@ Images (Insta)
     </head>
     <body>
         <div class="btn fill" onclick="document.getElementById('page').style.display='inline';this.style.display='none';">Begin Session</div>
-        <div id="page"  style="display:none;">
+        <div id="page" style="display:none;">
             <h1 class="typewriter">
                 YOU ARE NOW CONNECTED TO THE .NET
             </h1>
@@ -112,15 +131,47 @@ Images (Insta)
                 <a href="https://www.instagram.com/_anicyber/"><div class="btn">Images</div></a>
                 <a onclick="document.getElementById('apps').style.display='inline';this.style.display='none';"><div class="btn">Apps...</div></a>
                 <div id="apps" style="display:none;">
-                    <a onclick=""><div class="btn">Notes</div></a>
+                    <a onclick="startCode();"><div class="btn">Code</div></a>
+                    <a onclick="startNotes();"><div class="btn">Notes</div></a>
                     <a href="https://robertegj.github.io/Flash-Cards/"><div class="btn">Flash Cards</div></a>
                     <a onclick="startDraw();"><div class="btn">Draw</div></a>
+                    <a onclick="startSound();"><div class="btn">Sound</div></a>
                 </div>
             </div>
             <p id="mind"></p>
             <p id="time"></p>
             <p id="seed"></p>
         </div>
+
+        <!-- Hidden -->
+        <div id="codeBox" style="display:none">
+            <div onclick="startJS()" class="btn">JavaScript</div>
+            <div class="btn">Python</div>
+            <div class="btn">PHP</div>
+            <div class="btn">C</div>
+            <div class="btn">C++</div>
+            <div class="btn">C#</div>
+            <div class="btn">Rust</div>
+            <div class="btn">Go</div>
+        </div>
+
+        <div id="soundControl" style="display:none">
+            frequency
+            <input type="range" id="fIn" min="40" max="6000" oninput="startSound()" />
+            <span id="fOut"></span><br>
+            type
+            <input type="range" id="tIn" min="0" max="3" oninput="startSound()" />
+            <span id="tOut"></span><br>
+            volume
+            <input type="range" id="vIn" min="0" max="100" oninput="startSound()" />
+            <span id="vOut"></span><br>
+            duration
+            <input type="range" id="dIn" min="1" max="5000" oninput="startSound()" />
+            <span id="dOut"></span>
+            <br>
+            <button onclick='beep();'>Play</button>
+        </div>
+
         <script>
             // Begin JavaScript
             function updateTime(){
@@ -153,6 +204,34 @@ Images (Insta)
             theSeed = theSeed.getSeconds();
             document.getElementById("time").innerText = "Seed: " + getDigitalRoot(theSeed);
 
+
+            function startCode() {
+                document.getElementById("codeBox").style.display = "inline-block";
+                document.getElementById("page").innerHTML = "";
+                clearInterval(clock);
+            }
+
+            function startJS() {
+
+            }
+
+
+            function startNotes(){                                              // define notes "app"
+                document.getElementById("page").innerHTML = "";                 // clear page
+                clearInterval(clock);                                           // reset clock
+                document.getElementById("page").style.display = "inherit";
+                document.getElementById("page").style.textAlign = "center";
+                var textarea = document.createElement('textarea');              // create textarea
+                textarea.id = "notepad";                                        // apply notepad id
+                document.getElementById("page").appendChild(textarea);          // add it to page
+                if(localStorage["note"]){                                       // check if there's saved notes
+                    textarea.value = localStorage["note"];                      // if so, open them
+                } 
+                textarea.addEventListener('input', function (event) {           // listen for input in textarea (text in notepad)
+                    localStorage["note"] = event.target.value;                  // save notepad text in cookie
+                });
+            }
+
             function clickCanvas(canvas, event){
                 var ctx = canvas.getContext('2d');
                 let rect = canvas.getBoundingClientRect();
@@ -167,7 +246,7 @@ Images (Insta)
                 
             }
 
-            function startDraw(){
+            function startDraw() {
                 clearInterval(clock);
                 document.getElementById("page").innerHTML = "";
                 var canvasElem = document.createElement('canvas');
@@ -178,6 +257,51 @@ Images (Insta)
                 );
                 document.getElementById("page").appendChild(canvasElem);
             }
+
+
+            function startSound() {
+                document.getElementById("soundControl").style.display = "inline-block";
+                document.getElementById("page").innerHTML = "";
+                frequency = document.getElementById("fIn").value;
+                document.getElementById("fOut").innerHTML = frequency + ' Hz';
+
+                switch (document.getElementById("tIn").value * 1) {
+                    case 0: type = 'sine'; break;
+                    case 1: type = 'square'; break;
+                    case 2: type = 'sawtooth'; break;
+                    case 3: type = 'triangle'; break;
+                }
+                document.getElementById("tOut").innerHTML = type;
+
+                volume = document.getElementById("vIn").value / 100;
+                document.getElementById("vOut").innerHTML = volume;
+
+                duration = document.getElementById("dIn").value;
+                document.getElementById("dOut").innerHTML = duration + ' ms';
+            }
+
+            function beep() {
+                audioCtx = new(window.AudioContext || window.webkitAudioContext)();
+
+                var oscillator = audioCtx.createOscillator();
+                var gainNode = audioCtx.createGain();
+
+                oscillator.connect(gainNode);
+                gainNode.connect(audioCtx.destination);
+
+                gainNode.gain.value = volume;
+                oscillator.frequency.value = frequency;
+                oscillator.type = type;
+
+                oscillator.start();
+
+                setTimeout(
+                    function() {
+                    oscillator.stop();
+                    },
+                    duration
+                );
+            };
 
             var info={
                 timeOpened:new Date(),
