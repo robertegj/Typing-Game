@@ -32,8 +32,19 @@
         <br />
         Solved: <span id="score"></span>
         <button onclick="resetScore()">Reset Score</button>
-
+        <button onclick="caseSense(this)">Disable Case Sensitivity</button>
         <script>
+            var caseSensitive = true;
+
+            function caseSense(btn){
+                if(btn.innerText.includes("Disable")) {
+                    btn.innerText = "Enable Case Sensitivity";
+                    caseSensitive = false;
+                } else {
+                    btn.innerText = "Disable Case Sensitivity";
+                    caseSensitive = true;
+                }
+            }
 
             // Try to load previous score. Doesn't exist? Set to 0.
             if(localStorage["score"] > 0){
@@ -75,6 +86,12 @@
 
                 var userInput = document.getElementById("typedWord").value;
                 var currentWord = document.getElementById("currentWord").innerText;
+
+                if(!caseSensitive) {
+                    userInput = userInput.toString();
+                    userInput = userInput.toLowerCase();
+                    currentWord = currentWord.toLowerCase();
+                }
 
                 if(userInput == currentWord){
                     document.getElementById("typedWord").value = "";
