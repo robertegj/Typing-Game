@@ -32,16 +32,16 @@
         <br />
         Solved: <span id="score"></span>
         <button onclick="resetScore()">Reset Score</button>
-        <button onclick="caseSense(this)">Disable Case Sensitivity</button>
+        <button onclick="caseSense(this)">Case Sensitivity: On</button>
         <script>
             var caseSensitive = true;
 
             function caseSense(btn){
-                if(btn.innerText.includes("Disable")) {
-                    btn.innerText = "Enable Case Sensitivity";
+                if(btn.innerText.includes("On")) {
+                    btn.innerText = "Case Sensitivity: Off";
                     caseSensitive = false;
                 } else {
-                    btn.innerText = "Disable Case Sensitivity";
+                    btn.innerText = "Case Sensitivity: On";
                     caseSensitive = true;
                 }
             }
