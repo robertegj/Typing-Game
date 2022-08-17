@@ -48,9 +48,9 @@
 
             // Try to load previous score. Doesn't exist? Set to 0.
             if(localStorage["score"] > 0){
-            var score = localStorage["score"];
+                var score = localStorage["score"];
             } else {
-            var score = 0;
+                var score = 0;
             }
 
             // Function to reset score to 0
@@ -61,6 +61,11 @@
             }
 
             // BigAss Wordlist. Should fetch instead maybe?
+            wordList2 = {
+                "test" : "definition",
+
+            }
+
             wordList = [
                 "test",
                 "programming",
