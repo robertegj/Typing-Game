@@ -1,0 +1,31 @@
+python, a language
+print, function to display text
+variable, a container for storing data values
+string, a sequence of characters enclosed in single or double quotes
+integer, a whole number without decimals
+float, a number with decimals
+list, an ordered collection of items
+tuple, an ordered, immutable collection of items
+dictionary, an unordered collection of key-value pairs
+if statement, a conditional statement that executes a block of code if a condition is true
+else statement, a block of code to be executed if the condition in the if statement is false
+elif statement, allows you to check multiple conditions
+for loop, iterates over a sequence (string, list, tuple, dictionary, etc.)
+while loop, repeats a block of code as long as a certain condition is true
+function, a block of reusable code that performs a specific task
+return statement, specifies the value to be returned by a function
+input function, takes user input from the keyboard
+len function, returns the length of an object (e.g., string, list)
+range function, generates a sequence of numbers
+append method, adds an element to the end of a list
+pop method, removes the last element from a list
+indexing, accessing individual elements in a sequence using their position
+slicing, extracting a portion of a sequence
+comment, a line or block of text used to explain code (not executed)
+try-except block, handles exceptions (errors) in code
+class, a blueprint for creating objects with attributes and methods
+object, an instance of a class
+method, a function associated with an object
+inheritance, allows a class to inherit properties and methods from another class
+module, a file containing Python definitions and statements
+import statement, used to import modules into your code

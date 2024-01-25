@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Rob's typing game</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <style>
+            body {
+                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                text-align: center;
+                padding: 0;
+                margin: 0;
+            }
+            header {
+                color: black;
+                padding: .5em;
+            }
+            footer {
+                position: fixed;
+                bottom: 0;
+                width: 100%;
+            }
+            #typingForm {
+                /* border: 2px solid white; */
+            }
+            #game {
+                border: 2px solid black;
+                border-radius: 1em;
+                max-width: 600px;
+                margin: auto;
+            }
+            #score {
+                background: springgreen;
+                border-radius: 1em;
+                padding-left: 1em;
+                padding-right: 1em;
+            }
+            .right {
+                animation: happy-wiggle 0.2s 2;
+            }
+            .wrong {
+                animation: angry-wiggle 0.2s;
+            }
+            @keyframes angry-wiggle{
+                0%   {border: 2px solid white;background: white;}
+                50%  {border: 2px solid red;  background: red;}
+                100% {border: 2px solid white;background: white;}
+            }
+            @keyframes happy-wiggle{
+                0%   {background: springgreen;}
+                50%  {background: white}
+                100% {background: springgreen;}
+            }
+        </style>
+    </head>
+    <body>
+        
+        <header>Rob's typing game</header>
+        <a href="?test=english-adv.csv">English (Advanced)</a><br>
+        <a href="?test=python-01.csv">Python (Beginner)</a><br>
+        <a href="?test=python-02.csv">Python (Intermediate)</a><br><br>
+
+
+        <div id="game">
+            <h2 style="color:slategray; ">Current Word:</h2>
+            <h1 id="currentWord"></h1>
+            <i id="currentDefinition"></i>
+            <br /><br />
+            <form id="typingForm">
+                <input id="typedWord" type="text"  autofocus autocomplete="off"/>
+                <input type="submit" value="Submit"/>
+            </form>
+            <br />
+            Solved: <span id="score"></span>
+            <br /><br />
+            <button onclick="resetScore()">Reset Score</button>
+            <button onclick="caseSense(this)">Case Sensitivity: On</button>
+            <br /><br />
+        </div>
+
+        <footer>
+            Copyleft 2022 - I hope we're OK.
+        </footer>
+
+        <script>
+            var caseSensitive = true;
+
+            function caseSense(btn){
+                if(btn.innerText.includes("On")) {
+                    btn.innerText = "Case Sensitivity: Off";
+                    caseSensitive = false;
+                } else {
+                    btn.innerText = "Case Sensitivity: On";
+                    caseSensitive = true;
+                }
+            }
+
+            // Try to load previous score. Doesn't exist? Set to 0.
+            if(localStorage["score"] > 0){
+                var score = localStorage["score"];
+            } else {
+                var score = 0;
+            }
+
+            // Function to reset score to 0
+            function resetScore(){
+                localStorage["score"] = 0;
+                score = localStorage["score"];
+                document.getElementById("score").innerText = score;
+            }
+
+
+            function getJSON(url) {
+                var resp ;
+                var xmlHttp ;
+                resp  = '' ;
+                xmlHttp = new XMLHttpRequest();
+
+                if(xmlHttp != null){
+                    xmlHttp.open( "GET", url, false );
+                    xmlHttp.send( null );
+                    resp = xmlHttp.responseText;
+                }
+
+                return resp;
+            }
+
+            
+            // BigAss Wordlist. Should fetch instead maybe?
+            urlParams = new URLSearchParams(window.location.search);
+            selectedTest = urlParams.get('test');
+            if(selectedTest != null){
+                wordList = getJSON(selectedTest).split('\n');
+            } else {
+                wordList = getJSON("english-adv.csv").split('\n');
+
+            }
+            for(i=0;i<wordList.length;i++){
+                wordList[i] = wordList[i].split(',');
+            }
+            console.log(wordList);
+
+
+            // Update the word to a random word in the list
+            function rollWord() {
+                var randomNumber = Math.floor(Math.random()*wordList.length);
+                document.getElementById("currentWord").innerText = wordList[randomNumber][0];
+                document.getElementById("currentDefinition").innerText = wordList[randomNumber][1];
+            }
+            rollWord();
+
+            // On form submit, prevent page refresh. Compare user text to current word. Roll word if correct, show error animation if wrong.
+            function handleForm(event) { 
+                event.preventDefault(); 
+                document.getElementById("game").classList.remove("wrong");
+                document.getElementById("score").classList.remove("right");
+
+                var userInput = document.getElementById("typedWord").value;
+                var currentWord = document.getElementById("currentWord").innerText;
+
+                if(!caseSensitive) {
+                    userInput = userInput.toString();
+                    userInput = userInput.toLowerCase();
+                    currentWord = currentWord.toLowerCase();
+                }
+
+                if(userInput == currentWord){
+                    document.getElementById("typedWord").value = "";
+                    score++;
+                    localStorage["score"] = score;
+                    document.getElementById("score").innerText = score;
+                    rollWord();
+                    document.getElementById("score").classList.add("right");
+                } else {
+                    document.getElementById("game").classList.add("wrong");
+                }
+            } 
+            document.getElementById("typingForm").addEventListener('submit', handleForm);
+            document.getElementById("score").innerText = score;
+
+
+        </script>
+    </body>
+
+</html>

@@ -1,0 +1,77 @@
+    Decorator, A design pattern to extend or modify the behavior of callable objects.
+    Generator, A function that produces a sequence of values lazily, one at a time.
+    Lambda Function, An anonymous function defined using the lambda keyword.
+    List Comprehension, A concise way to create lists using a single line of code.
+    Tuple Unpacking, Extracting elements from a tuple into separate variables.
+    Dunder Methods, Special methods in Python identified by double underscores (e.g., __init__).
+    Metaclasses, A class of a class, used to define how classes behave.
+    Recursion, A programming technique where a function calls itself.
+    Closure, A function object that has access to variables in its lexical scope, even when the function is called outside that scope.
+    Exception Handling, Managing errors in a program using try, except, and finally blocks.
+    Context Manager, An object that defines the methods __enter__ and __exit__ to enable the with statement.
+    Pickle, A module for serializing and deserializing Python objects.
+    JSON, A module for working with JSON data (JavaScript Object Notation).
+    Asyncio, A library for writing asynchronous code using the async/await syntax.
+    Decorator Pattern, A structural design pattern that allows behavior to be added to an individual object, either statically or dynamically.
+    Map, Filter, and Reduce, Higher-order functions for processing sequences of data.
+    Numpy, A powerful library for numerical operations and multi-dimensional arrays.
+    Pandas, A data manipulation library providing data structures like DataFrames.
+    Matplotlib, A plotting library for creating static, animated, and interactive visualizations in Python.
+    Scikit-learn, A machine learning library for classical machine learning algorithms.
+    TensorFlow, An open-source machine learning framework developed by Google.
+    PyTorch, An open-source machine learning framework developed by Facebook.
+    Django, A high-level web framework for building web applications in Python.
+    Flask, A lightweight web framework for building small to medium-sized web applications.
+    ORM (Object-Relational Mapping), A technique to interact with databases using objects instead of SQL queries.
+    Regular Expression, A powerful tool for pattern matching and text manipulation.
+    GIL (Global Interpreter Lock), A mechanism in CPython that allows only one thread to execute Python bytecode at a time.
+    Context Variables, Introduced in Python 3.7, used for passing context-specific data across functions.
+    Type Hinting, An optional static typing system for Python using hints in function signatures.
+    Dataclasses, A module for automatically adding special methods such as __init__ to user-defined classes.
+    Abstract Base Classes (ABCs), Classes that cannot be instantiated and are meant to be subclassed.
+    Metaprogramming, Writing code that manipulates other code at runtime.
+    Mixin, A way to reuse a class's code in multiple class hierarchies.
+    WSGI (Web Server Gateway Interface), A specification for web servers to communicate with web applications.
+    CI/CD (Continuous Integration/Continuous Deployment), Practices for automating the testing and deployment of code changes.
+    Unit Testing, Writing tests for individual units or components of a program.
+    Mocking, Creating simulated objects to replace real objects during testing.
+    Pytest, A popular testing framework for Python.
+    Monkey Patching, Dynamically modifying or extending a class or module at runtime.
+    Pipenv, A packaging tool for Python that aims to bring the best of all packaging worlds to the Python world.
+    Jupyter Notebooks, Interactive computing environments that enable code execution in a document-like format.
+    Dask, A parallel computing library that integrates with other Python libraries like Pandas.
+    SQLAlchemy, An SQL toolkit and Object-Relational Mapping (ORM) library for Python.
+    GraphQL, A query language and runtime for APIs that allows clients to request only the data they need.
+    Async/await, Syntax for asynchronous programming in Python.
+    Data Mining, Extracting patterns and information from large datasets.
+    Web Scraping, Extracting data from websites programmatically.
+    Beautiful Soup, A library for pulling data out of HTML and XML files.
+    PyQt and Tkinter, GUI (Graphical User Interface) libraries for creating desktop applications.
+    Docker, A platform for developing, shipping, and running applications in containers.
+    RESTful API, An architectural style for designing
+        RESTful API, An architectural style for designing networked applications that adhere to the principles of Representational State Transfer (REST).
+    Microservices, An architectural style where a software application is composed of small, independent services that communicate with each other.
+    Serverless Computing, A cloud computing execution model where the cloud provider manages the infrastructure, and developers focus on writing code.
+    Big-O Notation, A mathematical notation used to describe the performance or complexity of an algorithm.
+    DRY (Don't Repeat Yourself), A software development principle advocating for the reduction of redundancy in code.
+    SOLID Principles, A set of design principles for writing maintainable and scalable software.
+    Design Patterns, Reusable solutions to common problems encountered in software design.
+    Agile Methodology, An iterative and flexible approach to software development.
+    Waterfall Model, A traditional linear and sequential approach to software development.
+    DevOps, A set of practices that aim to automate and integrate the processes of software development and IT operations.
+    Git, A distributed version control system for tracking changes in source code during software development.
+    GitHub, A web-based platform for version control and collaboration using Git.
+    Continuous Integration (CI), A software development practice where code changes are automatically built, tested, and integrated into the shared repository.
+    Continuous Deployment (CD), The automated process of deploying code changes to a production environment.
+    Code Review, A systematic examination of source code by other developers to find and fix mistakes.
+    Technical Debt, The metaphorical concept of the extra work needed to fix issues and improve a codebase due to shortcuts taken during development.
+    Scalability, The ability of a system to handle increased load or demand by adding resources.
+    Load Balancing, Distributing incoming network traffic across multiple servers to ensure no single server is overwhelmed.
+    Containerization, Lightweight and portable packaging of software that includes everything needed to run it.
+    Kubernetes, An open-source container orchestration platform for automating the deployment, scaling, and management of containerized applications.
+    Cybersecurity, The practice of protecting systems, networks, and programs from digital attacks.
+    Encryption, The process of converting information into a code to prevent unauthorized access.
+    Two-Factor Authentication (2FA), A security process in which the user provides two different authentication factors to verify their identity.
+    Zero-Day Exploit, A cyber attack that takes advantage of a software vulnerability on the same day it becomes known.
+    Bug Bounty Program, An initiative where individuals are rewarded for finding and reporting bugs or vulnerabilities in software.
+    Open
